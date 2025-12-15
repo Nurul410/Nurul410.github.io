@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nurul Aishah's Student Bento Grid - Updated</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* General Reset and Font */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5; /* Soft grey background */
+            color: #1e293b; /* Dark text for contrast */
+            line-height: 1.6;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Color Palette Variables */
+        :root {
+            --color-background: #f0f2f5;
+            --color-surface: #ffffff;
+            --color-text-primary: #1e293b;
+            --color-text-secondary: #64748b;
+            --color-accent: #0077b6; /* Deep Ocean Blue Accent */
+            --color-border: #e2e8f0;
+        }
+
+        /* Grid Container */
+        .bento-grid {
+            display: grid;
+            gap: 16px; /* Gap between cards */
+            width: 100%;
+            max-width: 1200px; /* Max width for desktop layout */
+            /* Desktop Layout: Define columns and rows */
+            grid-template-columns: repeat(4, 1fr); /* 4 equal columns */
+            grid-template-rows: repeat(3, auto); /* 3 rows, content-sized */
+        }
+
+        /* Base Card Styling */
+        .bento-card {
+            background-color: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            /* Updated transition for smoother hover effect */
+            transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.2s ease;
+        }
+
+        /* New Hover Effect (3. Theme Tweak) */
+        .bento-card:hover {
+            transform: translateY(-4px) scale(1.01); /* Lift and subtle zoom */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Card Content Styling */
+        .card-header {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--color-text-secondary);
+            margin-bottom: 8px;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-text-primary);
+            margin-bottom: 12px;
+        }
+
+        .card-content p {
+            color: var(--color-text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .social-links a {
+            color: var(--color-accent);
+            text-decoration: none;
+            margin-right: 15px;
+            font-weight: 600;
+            transition: color 0.2s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--color-text-primary);
+        }
+
+        /* --- Grid Layout Definitions --- */
+
+        /* Card 1 (Profile): Large box (2x2) */
+        .card-profile {
+            grid-column: 1 / span 2;
+            grid-row: 1 / span 2;
+            justify-content: space-between;
+        }
+        .profile-details {
+            margin-bottom: 20px;
+        }
+        .profile-details h1 {
+            font-size: 2.5rem;
+            margin-bottom: 4px;
+            color: var(--color-accent);
+        }
+        .tagline {
+            font-style: italic;
+            color: var(--color-text-primary);
+            margin-top: 10px;
+            font-size: 1.1rem;
+        }
+
+        /* Card 2 (Location): Small box (1x1) */
+        .card-location {
+            grid-column: 3 / span 1;
+            grid-row: 1 / span 1;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .card-location .card-title {
+            font-size: 2rem;
+            margin-bottom: 0;
+            color: var(--color-text-primary);
+        }
+
+        /* Card 3 (Subjects): Medium box (1x2) */
+        .card-tech-stack {
+            grid-column: 4 / span 1;
+            grid-row: 1 / span 2;
+        }
+        .subject-list {
+            list-style: none;
+        }
+        .subject-list li {
+            padding: 8px 0;
+            border-bottom: 1px dashed var(--color-border);
+            color: var(--color-text-primary);
+            font-weight: 600;
+        }
+        .subject-list li:last-child {
+            border-bottom: none;
+        }
+
+        /* Card 4 (Case Study): Medium box (1x1) */
+        .card-case-study {
+            grid-column: 3 / span 1;
+            grid-row: 2 / span 1;
+        }
+        .case-study-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--color-accent);
+            margin-bottom: 8px;
+        }
+
+        /* Card 5 (Hobby): Small box (1x1) */
+        .card-hobby {
+            grid-column: 1 / span 1;
+            grid-row: 3 / span 1;
+        }
+
+        /* Card 7 (NEW Reflection): Small box (1x1) */
+        .card-reflection {
+            grid-column: 2 / span 1; /* Placed next to Hobby (Card 5) */
+            grid-row: 3 / span 1;
+        }
+        .card-reflection .card-content p {
+            font-weight: 600;
+            color: var(--color-text-primary);
+            font-size: 0.95rem;
+        }
+
+
+        /* Card 6 (Playlist): Wide box (2x1) */
+        .card-playlist {
+            /* Now spans 2 columns instead of 3 to make room for the new cards on the third row */
+            grid-column: 3 / span 2;
+            grid-row: 3 / span 1;
+            justify-content: center;
+            align-items: center;
+            background-color: #1a1a1a;
+            color: #ffffff;
+            border-color: #333333;
+        }
+        .card-playlist .card-title {
+            color: #1db954;
+        }
+
+        /* Mobile Responsiveness (Screen size less than 767px) */
+        @media (max-width: 767px) {
+            body {
+                padding: 10px;
+                align-items: flex-start;
+            }
+
+            .bento-grid {
+                /* Stacked vertically: 1 column */
+                grid-template-columns: 1fr;
+                grid-template-rows: auto;
+                gap: 12px;
+                max-width: 600px;
+            }
+
+            /* Reset all grid-area properties for mobile to stack them */
+            .bento-card {
+                grid-column: 1 / -1; /* Full width */
+                grid-row: auto;
+                /* Remove the hover lift/zoom on touch devices for better usability */
+                transform: none !important;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bento-grid">
+
+        <div class="bento-card card-profile">
+            <div class="profile-details">
+                <p class="card-header">Student Profile</p>
+                <h1>Nurul Aishah</h1>
+                <p class="tagline">"Innovating food safety."</p>
+                <p><strong>Program:</strong> Food Science</p>
+                <p><strong>Year:</strong> Year 1 Undergraduate</p>
+            </div>
+            <div class="social-links">
+                <p class="card-header">Connect</p>
+                <a href="#" target="_blank">LinkedIn</a>
+                <a href="#" target="_blank">GitHub</a>
+                <a href="#" target="_blank">UMT Portal</a>
+            </div>
+        </div>
+
+        <div class="bento-card card-location">
+            <p class="card-header">Current Location</p>
+            <p class="card-title">UMT</p>
+            <p>Kuala Nerus</p>
+        </div>
+
+        <div class="bento-card card-tech-stack">
+            <p class="card-header">Semester 1 Subjects</p>
+            <p class="card-title">Core Foundations</p>
+            <ul class="subject-list">
+                <li>Organic Chemistry</li>
+                <li>Physical Chemistry</li>
+                <li>Biochemistry</li>
+                <li>Engineering Mathematics</li>
+                <li>Computer Systems</li>
+            </ul>
+        </div>
+
+        <div class="bento-card card-case-study">
+            <p class="card-header">Current Research</p>
+            <p class="case-study-title">Starch Gelatinization in Local Kuih</p>
+            <div class="card-content">
+                <p>Analyzing the texture profiles of popular Malaysian dessert, Kuih Lapis, based on varying starch and heat treatments.</p>
+                <a= "https://github.com/Nurul410" class="case-study-link">View Full Report &rarr;</a>
+            </div>
+        </div>
+
+        <div class="bento-card card-hobby">
+            <p class="card-header">Wellness & Recreation</p>
+            <p class="card-title">Hobby</p>
+            <p>Evening walks at Pantai UMT</p>
+        </div>
+
+        <div class="bento-card card-reflection">
+            <p class="card-header">Personal Vision</p>
+            <p class="card-title" style="font-size: 1.1rem; color: var(--color-accent);">Why Food Tech Matters in Malaysia</p>
+            <div class="card-content">
+                <p>Sustainable food security is crucial for our future. By optimizing local processing methods, we can reduce waste and improve nutrition.</p>
+            </div>
+        </div>
+
+        <div class="bento-card card-playlist">
+            <p class="card-header">Focus Soundtrack</p>
+            <p class="card-title">Deep Focus Lo-Fi Mix</p>
+            <p style="color: #999;">**(Placeholder for Embedded Music Player Widget)**<<iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/086myS9r57YsLbJpU0TgK9?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>>
+        </div>
+
+    </div>
+
+</body>
+</html>
