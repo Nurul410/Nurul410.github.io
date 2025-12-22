@@ -118,15 +118,13 @@
         /* --- UPDATES FOR PROFILE CARD BACKGROUND IMAGE --- */
 
         #card-profile {
-            /* 1. Set the background image (USE YOUR HOSTED URL HERE) */
             background-image: url('https://example.com/images/bg.jpg'); 
             background-size: cover;
-            background-position: center 30%; /* Focus on the beaker */
+            background-position: center 30%; 
             background-repeat: no-repeat;
-            color: var(--color-text-on-dark); /* Default text color on card is white */
+            color: var(--color-text-on-dark); 
         }
         
-        /* 2. Create a dark overlay for better text readability */
         #card-profile::before {
             content: '';
             position: absolute;
@@ -134,16 +132,15 @@
             right: 0;
             bottom: 0;
             left: 0;
-            background: rgba(0, 0, 0, 0.5); /* 50% opacity black overlay */
+            background: rgba(0, 0, 0, 0.5); 
             border-radius: var(--border-radius);
-            z-index: -1; /* Place overlay behind content but in front of background image */
+            z-index: -1; 
         }
         
-        /* 3. Override text colors for visibility on the dark background/overlay */
         #card-profile .card-header,
         #card-profile .accent-text,
         #card-profile .social-links a {
-            color: #C0DEFF; /* Lighter blue accent for contrast */
+            color: #C0DEFF; 
         }
         
         #card-profile .card-subtitle,
@@ -156,10 +153,9 @@
         }
         
         #card-profile .social-links a:hover {
-            color: var(--color-text-on-dark); /* White on hover */
+            color: var(--color-text-on-dark); 
         }
         
-        /* Specific Card Styles (kept for non-profile cards) */
         #card-profile .social-links {
             margin-top: 15px;
         }
@@ -190,6 +186,30 @@
             line-height: 1.5;
         }
 
+        /* --- STYLES FOR BUTTON AND TWO-COLUMN LAYOUT --- */
+        .card-casestudy-grid {
+            display: grid;
+            gap: 20px;
+        }
+
+        .btn-app {
+            display: inline-block;
+            background-color: var(--color-accent);
+            color: white;
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-align: center;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            margin-top: 10px;
+        }
+
+        .btn-app:hover {
+            background-color: #004466;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 90, 135, 0.3);
+        }
 
         /* Rule 2: Full Responsiveness - Desktop Grid Layout */
         @media (min-width: 768px) {
@@ -197,38 +217,36 @@
                 grid-template-columns: repeat(5, 1fr); 
             }
 
-            /* Card 1: Profile (Large box: 2x2 area) */
             #card-profile {
                 grid-column: span 2;
                 grid-row: span 2;
             }
 
-            /* Card 2: Location (Small box: 1x1 area) */
             #card-location {
                 grid-column: span 1;
             }
 
-            /* Card 3: Tech Stack (Medium box: 2x1 area) */
             #card-techstack {
                 grid-column: span 2;
             }
 
-            /* Card 4: Case Study (Medium box: 2x1 area) */
             #card-casestudy {
-                grid-column: span 2;
+                grid-column: span 3;
+            }
+
+            .card-casestudy-grid {
+                grid-template-columns: 2fr 1.2fr;
+                align-items: center;
             }
             
-            /* Card 5: Hobby (Small box: 1x1 area) */
             #card-hobby {
                 grid-column: span 1;
             }
             
-            /* Card 7 (New): Reflection (Small box: 2x1 area) */
             #card-reflection {
-                grid-column: span 2;
+                grid-column: span 1;
             }
 
-            /* Card 6: Playlist (Wide box at the bottom: 5x1 area) */
             #card-playlist {
                 grid-column: span 5;
             }
@@ -246,7 +264,7 @@
                     <p class="card-subtitle">Universiti Malaysia Terengganu (UMT) Student</p>
                     <div class="card-content">
                         <p>Program: <span class="accent-text">B.Sc. Food Science (Honours)</span></p>
-                        <p>Year: <span class="accent-text">Year 2</span></p>
+                        <p>Year: <span class="accent-text">Year 1</span></p>
                         <p class="tagline">"Innovating food safety."</p>
                     </div>
                 </div>
@@ -271,8 +289,8 @@
                 <div class="card-content">
                     <h2 class="card-title">Food Science Stack</h2>
                     <ul>
-                        <li><span class="accent-text">Food Chemistry</span></li>
-                        <li><span class="accent-text">Microbiology</span></li>
+                        <li><span class="accent-text">Biochemistry</span></li>
+                        <li><span class="accent-text">Mathematics</span></li>
                         <li>Excel Data Analysis</li>
                         <li>Lab Analysis Techniques</li>
                     </ul>
@@ -280,11 +298,17 @@
             </div>
 
             <div class="bento-card" id="card-casestudy">
-                <div class="card-header">RECENT CASE STUDY</div>
-                <div class="card-content">
-                    <h2 class="card-title">Starch Gelatinization in Local Kuih</h2>
-                    <p>Analyzing texture profiles of *Kuih Lapis* based on starch type and cooking method to understand the physical and chemical changes during **gelatinization**.</p>
-                    <p class="accent-text">View Experiment Summary &rarr;</p>
+                <div class="card-header">RECENT CASE STUDY & APPS</div>
+                <div class="card-casestudy-grid">
+                    <div class="card-content">
+                        <h2 class="card-title">Starch Gelatinization in Local Kuih</h2>
+                        <p>Analyzing texture profiles of *Kuih Lapis* based on starch type and cooking method to understand the physical and chemical changes during **gelatinization**.</p>
+                        <p class="accent-text">View Experiment Summary →</p>
+                    </div>
+                    <div class="card-content" style="text-align: center; border-left: 1px solid var(--color-border); padding-left: 20px;">
+                        <p style="margin-bottom: 15px; font-weight: 500;">Stay focused during lab reports:</p>
+                        <a href="https://Nurul410.github.io/focus-timer-app/app.html" class="btn-app" target="_blank">Try My Focus Timer App</a>
+                    </div>
                 </div>
             </div>
 
@@ -300,15 +324,15 @@
             <div class="bento-card" id="card-reflection">
                 <div class="card-header">REFLECTION</div>
                 <div class="card-content">
-                    <h2 class="card-title">Why Food Tech Matters in Malaysia</h2>
-                    <p><span class="accent-text">Sustainable food security</span> is crucial for our future. By optimizing local processing methods, we can reduce waste and improve nutrition.</p>
+                    <h2 class="card-title">Why Food Tech Matters</h2>
+                    <p><span class="accent-text">Sustainable security</span> is crucial for our future.</p>
                 </div>
             </div>
 
             <div class="bento-card" id="card-playlist">
                 <div class="card-header">STUDY PLAYLIST</div>
                 <div class="placeholder-box">
-                    <p>🎧 Music Player Placeholder: Chill Lofi Beats for Study Sessions<<iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/album/7aJuG4TFXa2hmE4z1yxc3n?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>>
+                    <p>🎧 Music Player Placeholder: Chill Lofi Beats for Study Sessions</p>
                     <p>Connect your Spotify/YouTube Music API here.</p>
                 </div>
             </div>
